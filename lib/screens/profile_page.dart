@@ -10,12 +10,6 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Studyo'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(16),

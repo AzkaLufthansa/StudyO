@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:study_o/cubit/auth/auth_cubit.dart';
+import 'package:study_o/initialize_app.dart';
+import 'package:study_o/injection_container.dart';
 import 'package:study_o/routes/routes.dart';
 import 'package:study_o/screens/login_page.dart';
-import 'package:study_o/utils/constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
 Future<void> main() async {
-  await Supabase.initialize(
-    url: SUPABASE_URL,
-    anonKey: SUPABASE_URL
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Force orientation potrait
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  
+  await InitializeApp.init();
+
   runApp(const MyApp());
 }
 
@@ -21,20 +32,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'StudyO',
-      theme: ThemeData(
-        brightness: Brightness.dark,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (_) => sl<AuthCubit>()
+        ),
+      ],
+      child: GetMaterialApp(
+        title: 'StudyO',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        debugShowCheckedModeBanner: false,
+        navigatorObservers: [FlutterSmartDialog.observer],
+        builder: FlutterSmartDialog.init(),
+        darkTheme: ThemeData(
+          fontFamily: 'MiSans',
+          brightness: Brightness.dark
+        ),
+        themeMode: ThemeMode.dark,
+        
+        home: LoginPage(),
+        getPages: AppRoutes.pageRoute,
       ),
-      debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(
-        fontFamily: 'MiSans',
-        brightness: Brightness.dark
-      ),
-      themeMode: ThemeMode.dark,
-      
-      home: LoginPage(),
-      getPages: AppRoutes.pageRoute,
     );
   }
 }

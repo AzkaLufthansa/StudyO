@@ -14,14 +14,6 @@ class AddMaterialPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Add Lesson'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(
