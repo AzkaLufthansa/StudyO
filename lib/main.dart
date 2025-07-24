@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'StudyO',
       theme: ThemeData(
-        brightness: Brightness.dark
+        brightness: Brightness.dark,
       ),
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
         fontFamily: 'MiSans',
         brightness: Brightness.dark

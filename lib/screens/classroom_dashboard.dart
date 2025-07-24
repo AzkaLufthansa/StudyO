@@ -4,7 +4,7 @@ import 'package:study_o/utils/app_colors.dart';
 import 'package:study_o/utils/dimens.dart';
 
 class ClassroomDashboard extends StatelessWidget {
-  const ClassroomDashboard({Key? key}) : super(key: key);
+  const ClassroomDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +13,6 @@ class ClassroomDashboard extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Classroom Dashboard'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(AppDimens.marginPaddingLarge),
@@ -47,31 +39,64 @@ class ClassroomDashboard extends StatelessWidget {
                       'Kickstart your programming skill',
                       style: TextStyle(color: Colors.grey),
                     ),
-                    const SizedBox(height: 8),
-                    Card(
-                      color: const Color.fromARGB(255, 18, 1, 23),
-                      child: Container(
-                        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
-                        width: double.infinity,
-                        child: ElevatedButton(onPressed: () {Get.toNamed('/material');}, child: const Text('Learn'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
+                    const SizedBox(height: AppDimens.marginPaddingMedium,),
+                    Container(
+                      width: double.infinity,
+                      child: Material(
+                        color: const Color.fromARGB(255, 18, 1, 23),
+                        borderRadius: BorderRadius.circular(15),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed('/material');  
+                          },
+                          splashColor: Colors.blue.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimens.marginPaddingLarge),
+                            child: Text('Learn', textAlign: TextAlign.center,),
+                            ),
                         ),
-                      ),
-                    Card(
-                      color: const Color.fromARGB(255, 18, 1, 23),
-                      child: Container(
-                        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
-                        width: double.infinity,
-                        child: ElevatedButton(onPressed: () {Get.toNamed('/quiz');}, child: const Text('Quiz'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
+                      )
+                    ),
+                    const SizedBox(height: AppDimens.marginPaddingSmallXX,),
+                    Container(
+                      width: double.infinity,
+                      child: Material(
+                        color: const Color.fromARGB(255, 18, 1, 23),
+                        borderRadius: BorderRadius.circular(15),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed('/quiz');  
+                          },
+                          splashColor: Colors.blue.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimens.marginPaddingLarge),
+                            child: Text('Quiz', textAlign: TextAlign.center,),
+                            ),
                         ),
-                      ),
-                    Card(
-                      color: const Color.fromARGB(255, 18, 1, 23),
-                      child: Container(
-                        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
-                        width: double.infinity,
-                        child: ElevatedButton(onPressed: () {Get.toNamed('/material');}, child: const Text('Flashcard'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
+                      )
+                    ),
+                    const SizedBox(height: AppDimens.marginPaddingSmallXX,),
+                    Container(
+                      width: double.infinity,
+                      child: Material(
+                        color: const Color.fromARGB(255, 18, 1, 23),
+                        borderRadius: BorderRadius.circular(15),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed('/material');  
+                          },
+                          splashColor: Colors.blue.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimens.marginPaddingLarge),
+                            child: Text('Flashcard', textAlign: TextAlign.center,),
+                            ),
                         ),
-                      ),
+                      )
+                    ),
+                    const SizedBox(height: AppDimens.marginPaddingSmall,),
                     Card(
                       color: const Color.fromARGB(255, 18, 1, 23),
                       child: Container(
@@ -89,9 +114,13 @@ class ClassroomDashboard extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('M. Arizal Maulana'),
+                                    Expanded(
+                                      child: Text(
+                                        'M. Arizal Maulana',
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
                                     Container(
-                                      width: 100,
                                       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
@@ -114,9 +143,14 @@ class ClassroomDashboard extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('Dimastio Setiawan'),
+                                    Expanded(
+                                      child: Text(
+                                        'Dimastio Setiawan',
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                    const SizedBox(width: AppDimens.marginPaddingSmall,),
                                     Container(
-                                      width: 100,
                                       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
