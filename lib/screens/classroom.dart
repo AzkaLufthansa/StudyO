@@ -2,33 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_o/utils/app_colors.dart';
 
-import '../../utils/dimens.dart';
+import '../utils/dimens.dart';
 
-class MyClassesSection extends StatelessWidget {
-  const MyClassesSection({super.key});
+class Classroom extends StatelessWidget {
+  const Classroom({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(AppDimens.marginPaddingSmall),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Section Title
-                Text(
-                  'My Classes',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20
-                  ),
-                ),
-
-            const SizedBox(height: AppDimens.marginPaddingMedium,),
-
-            // Classes Card
-            ListView.separated(
-              physics: const BouncingScrollPhysics(),
+    return Scaffold(
+      backgroundColor: AppColors.primaryColor,
+      appBar: AppBar(
+        title: const Text('My Classes'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/profile');
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        margin: const EdgeInsets.all(16),
+        child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.zero,
               itemCount: 3,
               scrollDirection: Axis.vertical,
@@ -70,34 +68,9 @@ class MyClassesSection extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(height: AppDimens.marginPaddingMedium,);
-              },
-            ),
-
-            const SizedBox(height: AppDimens.marginPaddingMedium,),
-
-            // See More Button
-            Container(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppDimens.radiusExtraLarge)
-                    )
-                  )
-                ),
-                
-                onPressed: () {
-                  Get.toNamed('/classroom');
-                }, 
-                child: Text(
-                  'See More',
-                )
-              ),
-            )
-          ],
-        )
-      )
+          },
+        ),
+      ),
     );
   }
 }
