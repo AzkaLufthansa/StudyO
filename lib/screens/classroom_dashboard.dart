@@ -78,14 +78,14 @@ class ClassroomDashboard extends StatelessWidget {
                       )
                     ),
                     const SizedBox(height: AppDimens.marginPaddingSmallXX,),
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: Material(
                         color: const Color.fromARGB(255, 18, 1, 23),
                         borderRadius: BorderRadius.circular(15),
                         child: InkWell(
                           onTap: () {
-                            Get.toNamed('/material');  
+                            Get.toNamed('/flashcard');  
                           },
                           splashColor: Colors.blue.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(12),
