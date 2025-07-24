@@ -12,7 +12,7 @@ class AddMaterialPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: const Text('Learning'),
+        title: const Text('Add Lesson'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -33,14 +33,14 @@ class AddMaterialPage extends StatelessWidget {
         child: ElevatedButton(
           style: ButtonStyle(
             padding: WidgetStatePropertyAll(
-              const EdgeInsets.all(AppDimens.marginPaddingExtraLarge)
+              const EdgeInsets.all(AppDimens.marginPaddingLarge)
             )
           ),
           onPressed: () {}, 
           child: Text(
             'Create',
             style: TextStyle(
-              fontSize: 20
+              fontSize: 15
             ),
           )
         ),
@@ -63,16 +63,16 @@ class AddMaterialPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Material Title', style: TextStyle(fontSize: 18)),
+                      Text('Lesson Title', style: TextStyle(fontSize: 18)),
                       SizedBox(height: 20),
                       TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'ASDasdasds'
+                          hintText: 'Programming 101'
                         ),
                       ),
                       SizedBox(height: 20),
-                      Text('Material Description', style: TextStyle(fontSize: 18)),
+                      Text('Lesson Description', style: TextStyle(fontSize: 18)),
                       SizedBox(height: 20),
                       TextField(
                         keyboardType: TextInputType.multiline,
@@ -80,7 +80,7 @@ class AddMaterialPage extends StatelessWidget {
                         maxLines: 10,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'Masukan ini'
+                          hintText: 'This is where you will fill the field with the content of this lesson.'
                         ),
                         
                       ),

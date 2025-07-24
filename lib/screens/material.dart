@@ -57,6 +57,14 @@ class Material extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Action when button is pressed
+          Get.toNamed('/add_material');
+        },
+        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 105, 1, 114),
+      ),
     );
   }
 }

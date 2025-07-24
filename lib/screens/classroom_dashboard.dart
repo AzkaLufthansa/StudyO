@@ -85,7 +85,7 @@ class ClassroomDashboard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         child: InkWell(
                           onTap: () {
-                            Get.toNamed('/material');  
+                            Get.toNamed('/flashcard');  
                           },
                           splashColor: Colors.blue.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(12),
