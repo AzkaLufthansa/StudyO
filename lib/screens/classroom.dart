@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:study_o/utils/app_colors.dart';
 
 import '../utils/dimens.dart';
+import '../widgets/bottom_sheet_join_class.dart';
 
 class Classroom extends StatelessWidget {
   const Classroom({Key? key}) : super(key: key);
@@ -14,6 +15,17 @@ class Classroom extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Classes'),
         centerTitle: true,
+        actions: [
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 20,
+            child: IconButton(
+              icon: Icon(Icons.question_mark_rounded),
+              color: AppColors.primaryColor,
+              onPressed: () {Get.toNamed('/tutorial');},
+            ),
+          )
+        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
@@ -62,6 +74,18 @@ class Classroom extends StatelessWidget {
                 return const SizedBox(height: AppDimens.marginPaddingMedium,);
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context, 
+            builder: (_) {
+              return BottomSheetJoinClass();
+            }
+          );;
+        },
+        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 105, 1, 114),
       ),
     );
   }
