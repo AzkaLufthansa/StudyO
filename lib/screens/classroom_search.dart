@@ -14,14 +14,6 @@ class ClassroomSearch extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Search Classroom'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       
       body: Container(

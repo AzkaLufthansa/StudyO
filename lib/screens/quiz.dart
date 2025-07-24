@@ -12,14 +12,6 @@ class Quiz extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Quiz'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
