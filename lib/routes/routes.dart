@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:study_o/screens/classroom_dashboard.dart';
+import 'package:study_o/screens/flashcard_page.dart';
 import 'package:study_o/screens/login_page.dart';
 import 'package:study_o/screens/material.dart';
 
@@ -24,5 +25,6 @@ class AppRoutes {
     GetPage(name: '/classroom_dashboard', page: () => ClassroomDashboard()),
     GetPage(name: '/material', page: () => Material()),
     GetPage(name: '/quiz', page: () => Quiz()),
+    GetPage(name: '/flashcard', page: () => FlashcardPage()),
   ];
 }

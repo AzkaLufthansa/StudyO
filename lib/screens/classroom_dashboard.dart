@@ -4,7 +4,7 @@ import 'package:study_o/utils/app_colors.dart';
 import 'package:study_o/utils/dimens.dart';
 
 class ClassroomDashboard extends StatelessWidget {
-  const ClassroomDashboard({Key? key}) : super(key: key);
+  const ClassroomDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +13,6 @@ class ClassroomDashboard extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Classroom Dashboard'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(AppDimens.marginPaddingLarge),
@@ -69,7 +61,7 @@ class ClassroomDashboard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
                         width: double.infinity,
-                        child: ElevatedButton(onPressed: () {Get.toNamed('/material');}, child: const Text('Flashcard'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
+                        child: ElevatedButton(onPressed: () {Get.toNamed('/flashcard');}, child: const Text('Flashcard'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
                         ),
                       ),
                     Card(
@@ -89,9 +81,13 @@ class ClassroomDashboard extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('M. Arizal Maulana'),
+                                    Expanded(
+                                      child: Text(
+                                        'M. Arizal Maulana',
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
                                     Container(
-                                      width: 100,
                                       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
@@ -114,9 +110,14 @@ class ClassroomDashboard extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('Dimastio Setiawan'),
+                                    Expanded(
+                                      child: Text(
+                                        'Dimastio Setiawan',
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                    const SizedBox(width: AppDimens.marginPaddingSmall,),
                                     Container(
-                                      width: 100,
                                       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
