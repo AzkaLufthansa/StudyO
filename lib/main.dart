@@ -27,9 +27,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark
       ),
       darkTheme: ThemeData(
+        fontFamily: 'MiSans',
         brightness: Brightness.dark
       ),
       themeMode: ThemeMode.dark,
+      
       home: LoginPage(),
       getPages: AppRoutes.pageRoute,
     );
