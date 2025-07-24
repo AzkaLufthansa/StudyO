@@ -53,7 +53,7 @@ class ClassroomDashboard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
                         width: double.infinity,
-                        child: ElevatedButton(onPressed: () {Get.toNamed('/learn');}, child: const Text('Learn'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
+                        child: ElevatedButton(onPressed: () {Get.toNamed('/material');}, child: const Text('Learn'), style: TextButton.styleFrom(backgroundColor: Colors.transparent),)
                         ),
                       ),
                     Card(
