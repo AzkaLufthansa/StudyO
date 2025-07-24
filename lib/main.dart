@@ -5,6 +5,7 @@ import 'package:study_o/screens/login_page.dart';
 import 'package:study_o/utils/constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
 Future<void> main() async {
   await Supabase.initialize(
     url: SUPABASE_URL,
