@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:study_o/screens/login_screen.dart';
+import 'package:study_o/screens/login_page.dart';
 
 import '../screens/home_page.dart';
 import '../screens/profile_page.dart';

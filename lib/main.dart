@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_o/routes/routes.dart';
-import 'package:study_o/screens/home_page.dart';
+import 'package:study_o/screens/login_page.dart';
+import 'package:study_o/utils/constants.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  await Supabase.initialize(
+    url: SUPABASE_URL,
+    anonKey: SUPABASE_URL
+  );
   runApp(const MyApp());
 }
+
+final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +30,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark
       ),
       themeMode: ThemeMode.dark,
-      home: HomePage(),
+      home: LoginPage(),
       getPages: AppRoutes.pageRoute,
     );
   }
