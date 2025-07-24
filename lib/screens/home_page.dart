@@ -22,12 +22,16 @@ class HomePage extends StatelessWidget {
           children: [
             // My Classes Section
             MyClassesSection(),
-            ElevatedButton(
-              onPressed: () {
-              Get.toNamed('/classroom_dashboard');
-            }, child: Text("Classroom dashboard"))
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Action when button is pressed
+          print('FAB tapped!');
+        },
+        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 105, 1, 114),
       ),
     );
   }
