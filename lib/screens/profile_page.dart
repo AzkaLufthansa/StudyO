@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -32,7 +30,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Selamat datang di Profile!',
+                      'Selamat datang di Studyo!',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -40,7 +38,7 @@ class HomePage extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Test',
+                      'Temukan materi belajar yang sesuai dengan kebutuhanmu',
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
