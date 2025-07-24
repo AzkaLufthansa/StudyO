@@ -15,12 +15,15 @@ class ClassroomSearch extends StatelessWidget {
         title: const Text('Search Classroom'),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 20,
+            child: IconButton(
+              icon: Icon(Icons.question_mark_rounded),
+              color: AppColors.primaryColor,
+              onPressed: () {Get.toNamed('/tutorial');},
+            ),
+          )
         ],
       ),
       
@@ -38,16 +41,18 @@ class ClassroomSearch extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Lesson Title', style: TextStyle(fontSize: 18)),
-                      SizedBox(height: 20),
                       TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.search),
                           hintText: 'Programming 101'
                         ),
                       ),
+                      SizedBox(height: 20),
+                      Text('Result:', style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),
