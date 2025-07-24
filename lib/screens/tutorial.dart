@@ -19,6 +19,7 @@ class Tutorial extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(''),
             Card(
               child: Container(
                 padding: const EdgeInsets.all(AppDimens.marginPaddingMedium),
