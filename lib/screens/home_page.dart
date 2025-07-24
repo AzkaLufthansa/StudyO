@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:study_o/utils/app_colors.dart';
+
+import '../utils/dimens.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -6,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF141414),
+      backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
         title: const Text('Studyo'),
         centerTitle: true,
@@ -20,13 +24,13 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(AppDimens.marginPaddingLarge),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppDimens.marginPaddingMedium),
                 width: double.infinity,
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +50,12 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
+              
             ),
+            ElevatedButton(
+              onPressed: () {
+              Get.toNamed('/classroom_dashboard');
+            }, child: Text("Classroom dashboard"))
           ],
         ),
       ),

@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:study_o/screens/classroom_dashboard.dart';
 import 'package:study_o/screens/login_screen.dart';
+import 'package:study_o/screens/material.dart';
 
 import '../screens/home_page.dart';
 import '../screens/profile_page.dart';
+import '../screens/quiz.dart';
 
 class AppRoutes {
   static List<GetPage> get pageRoute => [
@@ -18,5 +21,8 @@ class AppRoutes {
       name: '/profile', 
       page: () => ProfilePage()
     ),
+    GetPage(name: '/classroom_dashboard', page: () => ClassroomDashboard()),
+    GetPage(name: '/material', page: () => Material()),
+    GetPage(name: '/quiz', page: () => Quiz()),
   ];
 }
