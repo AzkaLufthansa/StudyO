@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:study_o/screens/classroom_dashboard.dart';
-import 'package:study_o/screens/login_screen.dart';
+import 'package:study_o/screens/login_page.dart';
 import 'package:study_o/screens/material.dart';
 
 import '../screens/home_page.dart';

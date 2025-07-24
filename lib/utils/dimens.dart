@@ -5,6 +5,7 @@ class AppDimens {
   static const double marginPaddingMedium = 15.0;
   static const double marginPaddingLarge = 20.0;
   static const double marginPaddingExtraLarge = 24.0;
+  
   static const double radiusSmall = 4.0;
   static const double radiusMedium = 8.0;
   static const double radiusLarge = 16.0;

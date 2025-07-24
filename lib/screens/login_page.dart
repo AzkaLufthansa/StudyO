@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:study_o/utils/app_colors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -6,7 +8,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF141414),
+      backgroundColor: AppColors.primaryColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -33,34 +35,8 @@ class LoginPage extends StatelessWidget {
               icon: Icons.g_mobiledata,
               label: 'Lanjutkan dengan Google',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Autentikasi Google akan diimplementasi'),
-                  ),
-                );
+                Get.toNamed('/home');
               },
-            ),
-            const SizedBox(height: 16),
-            _buildAuthButton(
-              context,
-              icon: Icons.email,
-              label: 'Lanjutkan dengan Email',
-              backgroundColor: Colors.transparent,
-              border: Border.all(color: Colors.grey.shade700),
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
-              },
-            ),
-            const SizedBox(height: 32),
-            TextButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
-              },
-              child: const Text(
-                'Lewati dan lanjut sebagai tamu',
-                style: TextStyle(color: Colors.grey),
-              ),
             ),
           ],
         ),
@@ -87,20 +63,21 @@ class LoginPage extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
+            color: AppColors.secondaryColor,
             borderRadius: BorderRadius.circular(8),
             border: border,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: textColor ?? Colors.black),
+              Icon(icon, color: Colors.white),
               const SizedBox(width: 12),
               Text(
                 label,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: textColor ?? Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ],
