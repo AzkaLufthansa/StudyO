@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../utils/dimens.dart';
 
@@ -44,7 +45,7 @@ class BottomSheetJoinClass extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: () {Get.toNamed('/classroom_search');},
               child: SizedBox(
                 width: double.infinity,
                 child: Padding(
