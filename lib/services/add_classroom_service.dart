@@ -12,20 +12,43 @@ class AddClassroomService {
       }
 
       final data = request.toJson();
-      data['teacher_id'] = user.id; // 👈 tambahkan teacher_id di sini
+      data['teacher_id'] = user.id;
 
       print('REQUEST PRINT (with teacher_id): $data');
 
-      await supabase
+      // INSERT ke classroom dan ambil classroom_id-nya
+      final insertedClassroom = await supabase
           .from('classroom')
-          .insert(data);
+          .insert(data)
+          .select()
+          .single();
+
+      final classroomId = insertedClassroom['id'];
+      if (classroomId == null) {
+        throw Exception('Classroom ID not returned.');
+      }
+
+      print('CLASSROOM INSERTED: $insertedClassroom');
+
+      print('CLASSROOM ID PRINT: $classroomId');
+      print('USER ID PRINT: ${user.id}');
+
+      // INSERT ke pivot table classroom_user
+      await supabase.from('users_classroom').insert({
+        'classroom_id': classroomId,
+        'user_id': user.id,
+      });
+
+      print('Pivot insert success');
+
     } on PostgrestException catch (e) {
       throw Exception('Supabase error: ${e.message}');
     } on AuthException catch (e) {
       throw Exception('Auth error: ${e.message}');
     } catch (e, s) {
       print('ERROR: $e\nSTACKTRACE: $s');
-      throw Exception('Failed to add classroom: $e');
+      throw Exception('Failed to add classroom or pivot: $e');
     }
   }
+
 }
