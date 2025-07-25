@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_o/utils/app_colors.dart';
+import 'package:study_o/widgets/learn_modal.dart';
 
 class Material extends StatelessWidget {
   const Material({Key? key}) : super(key: key);
@@ -12,14 +13,6 @@ class Material extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Learn'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-            },
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
@@ -36,7 +29,12 @@ class Material extends StatelessWidget {
                 clipBehavior: Clip.hardEdge, // Ensures ripple stays within rounded edges
                 child: InkWell(
                   onTap: () {
-                    print('Card tapped!');
+                    showDialog(
+                      context: context, 
+                      builder: (_) {
+                        return LearnModal();
+                      }
+                    );
                   },
                   splashColor: Colors.blue.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(12),
