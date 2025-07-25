@@ -28,7 +28,7 @@ class Quiz extends StatelessWidget {
                 clipBehavior: Clip.hardEdge, // Ensures ripple stays within rounded edges
                 child: InkWell(
                   onTap: () {
-                    print('Card tapped!');
+                    Get.toNamed('/quiz_room');
                   },
                   splashColor: Colors.blue.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(12),
