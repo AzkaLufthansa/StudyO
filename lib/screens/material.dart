@@ -5,6 +5,7 @@ import 'package:study_o/cubit/material/material_cubit.dart';
 import 'package:study_o/injection_container.dart';
 import 'package:study_o/models/material_model.dart';
 import 'package:study_o/utils/app_colors.dart';
+import 'package:study_o/widgets/learn_modal.dart';
 
 class Material extends StatefulWidget {
   const Material({super.key});

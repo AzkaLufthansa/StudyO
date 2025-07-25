@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_o/widgets/join_private_classroom.dart';
+import 'package:study_o/widgets/learn_modal.dart';
 
 import '../utils/dimens.dart';
+import 'add_classroom_modal.dart';
 
 class BottomSheetJoinClass extends StatelessWidget {
   const BottomSheetJoinClass({super.key});
@@ -25,7 +28,14 @@ class BottomSheetJoinClass extends StatelessWidget {
               topLeft: Radius.circular(AppDimens.radiusLarge),
               topRight: Radius.circular(AppDimens.radiusLarge),
             ),
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context, 
+                  builder: (_) {
+                    return AddClassroomModal();
+                  }
+                );
+              },
               child: SizedBox(
                 width: double.infinity,
                 child: Padding(
@@ -65,7 +75,14 @@ class BottomSheetJoinClass extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context, 
+                  builder: (_) {
+                    return JoinPrivateClassroomModal();
+                  }
+                );
+              },
               child: SizedBox(
                 width: double.infinity,
                 child: Padding(

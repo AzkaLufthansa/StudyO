@@ -10,7 +10,6 @@ import 'package:study_o/routes/routes.dart';
 import 'package:study_o/screens/login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

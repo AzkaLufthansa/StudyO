@@ -82,7 +82,7 @@ class Classroom extends StatelessWidget {
             builder: (_) {
               return BottomSheetJoinClass();
             }
-          );;
+          );
         },
         child: Icon(Icons.add),
         backgroundColor: const Color.fromARGB(255, 105, 1, 114),
