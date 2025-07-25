@@ -7,10 +7,12 @@ import 'package:study_o/services/auth_service.dart';
 import 'package:study_o/services/classroom_service.dart';
 import 'package:study_o/services/material_service.dart';
 
+import 'cubit/all_classroom/all_classroom_cubit.dart';
 import 'cubit/auth/auth_cubit.dart';
 import 'cubit/classroom_user/classroom_user_cubit.dart';
 import 'cubit/post_material/post_material_cubit.dart';
 import 'services/flashcard_service.dart';
+import 'services/all_classroom_service.dart';
 
 var sl = GetIt.instance;
 
@@ -26,6 +28,11 @@ Future<void> initLocator() async {
   sl.registerFactory(
     () => ClassroomCubit(
       classroomService: sl(),
+    ),
+  );
+  sl.registerFactory(
+    () => AllClassroomCubit(
+      allClassroomService: sl(),
     ),
   );
   sl.registerFactory(
@@ -59,4 +66,5 @@ Future<void> initLocator() async {
   sl.registerLazySingleton(() => ClassroomService());
   sl.registerLazySingleton(() => MaterialService());
   sl.registerLazySingleton(() => FlashcardService());
+  sl.registerLazySingleton(() => AllClassroomService());
 }
