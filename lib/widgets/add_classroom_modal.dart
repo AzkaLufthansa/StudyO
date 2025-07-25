@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:study_o/widgets/dropdown.dart';
+import 'package:study_o/widgets/private_public_dropdown.dart';
 
 import '../utils/dimens.dart';
 
@@ -29,6 +31,13 @@ class AddClassroomModal extends StatelessWidget {
                           hintText: 'Classroom name'
                         ),
                       ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ClassDropdown(classOptions: ['Grade A', 'Grade B', 'Grade C', 'Grade D', 'Grade E'], onChanged: (selected){}),
+                      PrivateDropdown(classOptions: ['Public', 'Private'], onChanged: (selected){}),
+                    ],
+                  ),
                   SizedBox(height: 15,),
                   ElevatedButton(
                     style: ButtonStyle(
@@ -36,7 +45,9 @@ class AddClassroomModal extends StatelessWidget {
                         const EdgeInsets.all(AppDimens.marginPaddingLarge)
                       )
                     ),
-                    onPressed: () {}, 
+                    onPressed: () {
+                      
+                    }, 
                     child: Text(
                       'Create',
                       style: TextStyle(

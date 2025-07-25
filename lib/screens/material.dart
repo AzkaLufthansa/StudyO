@@ -93,7 +93,12 @@ class MaterialCard extends StatelessWidget {
         clipBehavior: Clip.hardEdge, // Ensures ripple stays within rounded edges
         child: InkWell(
           onTap: () {
-            print('Card tapped!');
+            showDialog(
+                  context: context, 
+                  builder: (_) {
+                    return LearnModal();
+                  }
+                );
           },
           splashColor: Colors.blue.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),
