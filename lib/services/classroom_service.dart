@@ -15,10 +15,7 @@ class ClassroomService {
           .select('classroom(id, name, grade, grade(name), teacher_id, users(full_name), is_private, password)')
           .eq('', userId);
 
-      print('PRINT: $response');
-      if (response.isEmpty) {
-        throw Exception('No data received from Supabase.');
-      }
+      // print('PRINT: $response');
 
       return response.map((item) => ClassroomModel.fromMap(item['classroom'])).toList();
     } on PostgrestException catch (e) {
@@ -42,9 +39,6 @@ class ClassroomService {
           .eq('classroom_id', classroomId);
 
       print('PRINT: $response');
-      if (response.isEmpty) {
-        throw Exception('No data received from Supabase.');
-      }
 
       return response.map((item) => MaterialModel.fromMap(item)).toList();
     } on PostgrestException catch (e) {
@@ -59,15 +53,10 @@ class ClassroomService {
 
   Future<List<UserJoinedModel>> getClassroomJoinedUsers(String classroomId) async {
     try {
-      // final response = await supabase
-      //   .from('classroom')
-      //   .select('teacher_id, users_classroom(user_id, users(full_name, id, score))')
-      //   .eq('id', classroomId);
-
       final response = await supabase
-        .from('users_classroom')
-        .select('classroom(teacher_id, users(full_name, id, score))')
-        .eq('classroom_id', classroomId);
+        .from('classroom')
+        .select('teacher_id, users_classroom(user_id, users(full_name, id, score))')
+        .eq('id', classroomId);
 
 
       print('PRINT: $response');

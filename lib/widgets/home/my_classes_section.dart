@@ -13,6 +13,7 @@ class MyClassesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(AppDimens.marginPaddingSmall),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,6 +34,9 @@ class MyClassesSection extends StatelessWidget {
                 } else if (state is ClassroomFailure) {
                   return Center(child: Text('Error: ${state.errMessage}'));
                 } else if (state is ClassroomSuccess) {
+                  if (state.classrooms.isEmpty) {
+                    return Text('You haven\'t joined any class yet');
+                  }
                   final classrooms = state.classrooms;
 
                   if (classrooms.isEmpty) {
@@ -100,25 +104,25 @@ class MyClassesSection extends StatelessWidget {
             const SizedBox(height: AppDimens.marginPaddingMedium),
 
             // See More Button
-            Container(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        AppDimens.radiusExtraLarge,
-                      ),
-                    ),
-                  ),
-                ),
+            // Container(
+            //   width: double.infinity,
+            //   child: ElevatedButton(
+            //     style: ButtonStyle(
+            //       shape: WidgetStatePropertyAll(
+            //         RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(
+            //             AppDimens.radiusExtraLarge,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
 
-                onPressed: () {
-                  Get.toNamed('/classroom');
-                },
-                child: Text('See More'),
-              ),
-            ),
+            //     onPressed: () {
+            //       Get.toNamed('/classroom');
+            //     },
+            //     child: Text('See More'),
+            //   ),
+            // ),
           ],
         ),
       ),
