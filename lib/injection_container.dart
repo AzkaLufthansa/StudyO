@@ -5,6 +5,7 @@ import 'package:study_o/services/auth_service.dart';
 import 'package:study_o/services/classroom_service.dart';
 
 import 'cubit/auth/auth_cubit.dart';
+import 'cubit/classroom_user/classroom_user_cubit.dart';
 
 var sl = GetIt.instance;
 
@@ -25,6 +26,11 @@ Future<void> initLocator() async {
   sl.registerFactory(
     () => MaterialCubit(
       MaterialService: sl(),
+    ),
+  );
+  sl.registerFactory(
+    () => ClassroomUserCubit(
+      classroomService: sl(),
     ),
   );
 

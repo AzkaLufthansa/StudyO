@@ -38,6 +38,7 @@ dependencies:
   flash_card: ^0.1.0
   lottie: ^3.3.1
   flutter_smart_dialog: ^4.9.8+9
+  pull_to_refresh: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

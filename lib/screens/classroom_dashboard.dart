@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart' hide MaterialState;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:study_o/cubit/classroom/classroom_cubit.dart';
+import 'package:study_o/cubit/classroom_user/classroom_user_cubit.dart';
 import 'package:study_o/cubit/material/material_cubit.dart';
 import 'package:study_o/injection_container.dart';
+import 'package:study_o/models/classroom_model.dart';
 import 'package:study_o/utils/app_colors.dart';
 import 'package:study_o/utils/dimens.dart';
 
@@ -31,8 +34,8 @@ class _ClassroomDashboardState extends State<ClassroomDashboard> {
     return MultiBlocProvider(
       providers: [
         // TODO:
-        BlocProvider<MaterialCubit>(
-          create: (_) => sl<MaterialCubit>()
+        BlocProvider<ClassroomUserCubit>(
+          create: (_) => sl<ClassroomUserCubit>()..fetchClassroomUsers(classroomId)
         ),
       ],
       child: Scaffold(
@@ -77,7 +80,7 @@ class ClassMaterialCard extends StatelessWidget {
             Container(
               width: double.infinity,
               child: Material(
-                color: const Color.fromARGB(255, 18, 1, 23),
+                color: const Color.fromARGB(255, 14, 0, 18),
                 borderRadius: BorderRadius.circular(15),
                 child: InkWell(
                   onTap: () {
@@ -96,7 +99,7 @@ class ClassMaterialCard extends StatelessWidget {
             Container(
               width: double.infinity,
               child: Material(
-                color: const Color.fromARGB(255, 18, 1, 23),
+                color: const Color.fromARGB(255, 14, 0, 18),
                 borderRadius: BorderRadius.circular(15),
                 child: InkWell(
                   onTap: () {
@@ -115,7 +118,7 @@ class ClassMaterialCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Material(
-                color: const Color.fromARGB(255, 18, 1, 23),
+                color: const Color.fromARGB(255, 14, 0, 18),
                 borderRadius: BorderRadius.circular(15),
                 child: InkWell(
                   onTap: () {
@@ -132,7 +135,7 @@ class ClassMaterialCard extends StatelessWidget {
             ),
             const SizedBox(height: AppDimens.marginPaddingSmall,),
             Card(
-              color: const Color.fromARGB(255, 18, 1, 23),
+              color: const Color.fromARGB(255, 14, 0, 18),
               child: Container(
                 padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
                 width: double.infinity,
@@ -140,65 +143,27 @@ class ClassMaterialCard extends StatelessWidget {
                   children: [
                     Text("Who's in this classroom", textAlign: TextAlign.center,),
                     const SizedBox(height: 8),
-                    Card(
-                      color: const Color.fromARGB(255, 2, 4, 52),
-                      child: Container(
-                        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'M. Arizal Maulana',
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color.fromARGB(255, 6, 9, 117)
-                                ), // optional background)
-                              child: Text(
-                                'Teacher',
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          ],
-                        )
-                        ),
-                      ),
-                      Card(
-                      color: const Color.fromARGB(255, 40, 2, 52),
-                      child: Container(
-                        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Dimastio Setiawan',
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                            const SizedBox(width: AppDimens.marginPaddingSmall,),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color.fromARGB(255, 105, 1, 114)
-                                ), // optional background)
-                              child: Text(
-                                '10 pts',
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          ],
-                        )
-                        ),
-                      ),
+                    BlocBuilder<ClassroomUserCubit, ClassroomUserState>(
+                      builder: (context, state) {
+                        if (state is ClassroomUserFailure) {
+                          return Center(child: Text('Error: ${state.errorMessage}'));
+                        } else if (state is ClassroomUserSuccess) {
+                          return ListView.separated(
+                            itemBuilder: (_, index) {
+                              return ClassroomUserWidget(data: state.users[index],);
+                            }, 
+                            separatorBuilder: (_, __) {
+                              return const SizedBox(height: 0,);
+                            }, 
+                            itemCount: state.users.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                          );
+                        } else {
+                          return const Center(child: const CircularProgressIndicator(),);
+                        }
+                      },
+                    ),
                     ]
                   )
                 )
@@ -206,6 +171,48 @@ class ClassMaterialCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ClassroomUserWidget extends StatelessWidget {
+  final UserJoinedModel data;
+
+  const ClassroomUserWidget({
+    super.key,
+    required this.data
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color.fromARGB(255, 2, 4, 52),
+      child: Container(
+        padding: EdgeInsets.all(AppDimens.marginPaddingSmall),
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                data.name,
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: const Color.fromARGB(255, 6, 9, 117)
+                ), // optional background)
+              child: Text(
+                'Teacher',
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        )
+      )
     );
   }
 }

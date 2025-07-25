@@ -41,7 +41,11 @@ class _MaterialState extends State<Material> {
             children: [
               BlocBuilder<MaterialCubit, MaterialState>(
                 builder: (context, state) {
-                  if (state is MaterialSuccess) {
+                  if (state is MaterialLoading) {
+                    return Center(child: const CircularProgressIndicator());
+                  } else if (state is MaterialFailure) {
+                    return Center(child: Text('Error: ${state.errMessage}'));
+                  } else if (state is MaterialSuccess) {
                     return ListView.builder(
                       itemCount: state.material.length,
                       physics: const NeverScrollableScrollPhysics(),

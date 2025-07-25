@@ -5,27 +5,56 @@ import 'package:study_o/injection_container.dart';
 import 'package:study_o/utils/app_colors.dart';
 import 'package:study_o/utils/dimens.dart';
 import 'package:study_o/widgets/bottom_sheet_join_class.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../widgets/home/my_classes_section.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _refreshController = RefreshController();
+
+  final ClassroomCubit _classroomCubit = sl<ClassroomCubit>();
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ClassroomCubit>(
-          create: (context) => sl<ClassroomCubit>()..fetchMyClassrooms(),
+          create: (context) => _classroomCubit..fetchMyClassrooms(),
         ),
       ],
-      child: Scaffold(
-        backgroundColor: AppColors.primaryColor,
-        appBar: AppBar(
-          title: const Text('Studyo'),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
+      child: _content(context),
+    );
+  }
+
+  Scaffold _content(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.primaryColor,
+      appBar: AppBar(
+        title: const Text('Studyo'),
+        centerTitle: true,
+      ),
+      body: SmartRefresher(
+        controller: _refreshController,
+        onRefresh: () async {
+        _classroomCubit.fetchMyClassrooms();
+          
+          _refreshController.refreshCompleted();
+        },
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppDimens.marginPaddingLarge),
           child: Column(
             children: [
@@ -34,18 +63,18 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showModalBottomSheet(
-              context: context, 
-              builder: (_) {
-                return BottomSheetJoinClass();
-              }
-            );
-          },
-          backgroundColor: const Color.fromARGB(255, 105, 1, 114),
-          child: Icon(Icons.add),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context, 
+            builder: (_) {
+              return BottomSheetJoinClass();
+            }
+          );
+        },
+        backgroundColor: const Color.fromARGB(255, 105, 1, 114),
+        child: Icon(Icons.add),
       ),
     );
   }
