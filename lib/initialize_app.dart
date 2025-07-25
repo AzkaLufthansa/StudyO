@@ -12,7 +12,7 @@ class InitializeApp {
 
     await Supabase.initialize(
       url: SUPABASE_URL,
-      anonKey: SUPABASE_URL
+      anonKey: SUPABASE_ANON_KEY
     );
   }
 
