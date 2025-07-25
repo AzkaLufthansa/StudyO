@@ -64,17 +64,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context, 
-            builder: (_) {
-              return BottomSheetJoinClass();
-            }
+      floatingActionButton: BlocBuilder<ClassroomCubit, ClassroomState>(
+        builder: (_, __) {
+          return FloatingActionButton(
+            onPressed: () async {
+              var result = await showModalBottomSheet(
+                context: context, 
+                builder: (_) {
+                  return BottomSheetJoinClass();
+                }
+              );
+          
+              if (result == true) {
+                BlocProvider.of<ClassroomCubit>(context).fetchMyClassrooms();
+              }
+            },
+            backgroundColor: const Color.fromARGB(255, 105, 1, 114),
+            child: Icon(Icons.add),
           );
-        },
-        backgroundColor: const Color.fromARGB(255, 105, 1, 114),
-        child: Icon(Icons.add),
+        }
       ),
     );
   }

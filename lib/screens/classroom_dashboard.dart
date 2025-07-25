@@ -96,25 +96,6 @@ class ClassMaterialCard extends StatelessWidget {
               )
             ),
             const SizedBox(height: AppDimens.marginPaddingSmallXX,),
-            Container(
-              width: double.infinity,
-              child: Material(
-                color: const Color.fromARGB(255, 14, 0, 18),
-                borderRadius: BorderRadius.circular(15),
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed('/quiz');  
-                  },
-                  splashColor: Colors.blue.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppDimens.marginPaddingLarge),
-                    child: Text('Quiz', textAlign: TextAlign.center,),
-                    ),
-                ),
-              )
-            ),
-            const SizedBox(height: AppDimens.marginPaddingSmallXX,),
             SizedBox(
               width: double.infinity,
               child: Material(
