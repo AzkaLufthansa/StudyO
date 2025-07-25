@@ -42,17 +42,10 @@ class LoginPage extends StatelessWidget {
               children: [
                 Hero(
                   tag: 'app-logo',
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF2A2A2A),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.school,
-                      size: 40,
-                      color: Colors.white,
-                    ),
+                  child: Image.asset(
+                    'assets/images/icon.png',
+                    width: 300,
+                    height: 300,
                   ),
                 ),
                 const SizedBox(height: 40),
